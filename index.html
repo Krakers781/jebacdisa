@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>FiveM Online Hunter</title>
+    <link rel="preconnect" href="https://servers-frontend.fivem.net">
+    <link rel="stylesheet" href="styles.css?v=9">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="eyebrow">FiveM Monitor</span>
+          <h1>Online Hunter</h1>
+        </div>
+        <div class="server-panel" aria-live="polite">
+          <div>
+            <span class="meta-label">Serwer</span>
+            <strong id="serverName">Ładowanie...</strong>
+          </div>
+          <div>
+            <span class="meta-label">Gracze</span>
+            <strong id="serverPlayers">-</strong>
+          </div>
+          <div>
+            <span class="meta-label">Ostatnio</span>
+            <strong id="lastUpdated">-</strong>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="toolbar" aria-label="Panel sterowania">
+          <div class="stats-grid">
+            <article class="stat-card online">
+              <span class="meta-label">Online</span>
+              <strong id="onlineCount">0</strong>
+            </article>
+            <article class="stat-card offline">
+              <span class="meta-label">Offline</span>
+              <strong id="offlineCount">0</strong>
+            </article>
+            <article class="stat-card total">
+              <span class="meta-label">Śledzeni</span>
+              <strong id="trackedCount">0</strong>
+            </article>
+          </div>
+
+          <div class="actions">
+            <label class="search-wrap" for="searchInput">
+              <span class="search-icon" aria-hidden="true"></span>
+              <input id="searchInput" type="search" placeholder="Szukaj grupy, nicku, Discord ID..." autocomplete="off">
+            </label>
+            <label class="toggle-switch" for="showHiddenToggle">
+              <input id="showHiddenToggle" type="checkbox">
+              <span class="switch-track" aria-hidden="true">
+                <span class="switch-thumb"></span>
+              </span>
+              <span>Pokaż ukryte</span>
+            </label>
+            <label class="toggle-switch" for="showOfflineToggle">
+              <input id="showOfflineToggle" type="checkbox">
+              <span class="switch-track" aria-hidden="true">
+                <span class="switch-thumb"></span>
+              </span>
+              <span>Pokaż offline</span>
+            </label>
+            <button id="refreshButton" class="primary-button" type="button">
+              <span class="refresh-mark" aria-hidden="true"></span>
+              Odśwież
+            </button>
+            <span id="refreshCountdown" class="refresh-countdown" aria-live="polite">Auto: 60s</span>
+          </div>
+        </section>
+
+        <section id="statusMessage" class="status-message is-hidden" aria-live="polite"></section>
+
+        <section id="groupsContainer" class="groups-grid" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <template id="groupTemplate">
+      <article class="group-card">
+        <button class="group-head" type="button" aria-expanded="true">
+          <span>
+            <span class="group-title"></span>
+            <span class="group-subtitle"></span>
+          </span>
+          <span class="collapse-icon" aria-hidden="true"></span>
+        </button>
+        <div class="players-list"></div>
+      </article>
+    </template>
+
+    <template id="playerTemplate">
+      <article class="player-row">
+        <div class="player-main">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <h2 class="player-name"></h2>
+            <span class="player-discord"></span>
+            <span class="player-status-label"></span>
+          </div>
+        </div>
+        <dl class="player-details">
+          <div>
+            <dt>ID</dt>
+            <dd class="player-id"></dd>
+          </div>
+          <div>
+            <dt>SteamHEX</dt>
+            <dd class="player-steam"></dd>
+          </div>
+          <div>
+            <dt>Ping</dt>
+            <dd class="player-ping"></dd>
+          </div>
+        </dl>
+      </article>
+    </template>
+
+    <script src="app.js?v=9" defer></script>
+  </body>
+</html>
