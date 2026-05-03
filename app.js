@@ -1,20 +1,39 @@
 const SERVER_API_URL = "https://servers-frontend.fivem.net/api/servers/single/okz5dj";
+const SERVER_DATA_URL = "data/server.json";
 const CONFIG_URL = "config/players.json";
 const DEFAULT_REFRESH_SECONDS = 60;
 const REQUEST_TIMEOUT_MS = 12000;
+const CACHE_STALE_WARNING_MS = 15 * 60 * 1000;
 const DEFAULT_WEBHOOK_USERNAME = "INTOUCH TEROR";
+const IS_FILE_PROTOCOL = window.location.protocol === "file:";
+const EMBEDDED_SERVER_SOURCE = {
+  label: "Wbudowana kopia danych",
+  cached: true,
+  getPayload: () => window.__FIVEM_SERVER_DATA__,
+  normalize: normalizeCachedServerResponse,
+};
+const JSON_SERVER_SOURCE = {
+  label: "data/server.json",
+  cached: true,
+  url: SERVER_DATA_URL,
+  normalize: normalizeCachedServerResponse,
+};
 const SERVER_API_SOURCES = [
+  ...(IS_FILE_PROTOCOL ? [EMBEDDED_SERVER_SOURCE, JSON_SERVER_SOURCE] : [JSON_SERVER_SOURCE, EMBEDDED_SERVER_SOURCE]),
   {
-    label: "Codetabs CORS proxy",
-    url: `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(SERVER_API_URL)}`,
+    label: "FiveM API",
+    url: SERVER_API_URL,
+    normalize: normalizeLiveServerResponse,
   },
   {
     label: "AllOrigins CORS proxy",
     url: `https://api.allorigins.win/raw?url=${encodeURIComponent(SERVER_API_URL)}`,
+    normalize: normalizeLiveServerResponse,
   },
   {
-    label: "FiveM API",
-    url: SERVER_API_URL,
+    label: "Codetabs CORS proxy",
+    url: `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(SERVER_API_URL)}`,
+    normalize: normalizeLiveServerResponse,
   },
 ];
 
@@ -33,6 +52,7 @@ const state = {
   previousPlayerStates: new Map(),
   collapsedGroups: new Set(),
   dataSource: "",
+  dataUpdatedAt: "",
 };
 
 const elements = {
@@ -94,10 +114,20 @@ function bindEvents() {
 
 async function loadConfig() {
   try {
+    if (IS_FILE_PROTOCOL && window.__PLAYERS_CONFIG__) {
+      state.config = normalizeConfig(window.__PLAYERS_CONFIG__);
+      return;
+    }
+
     const configText = await fetchText(CONFIG_URL);
     const config = parseConfigText(configText);
     state.config = normalizeConfig(config);
   } catch (error) {
+    if (window.__PLAYERS_CONFIG__) {
+      state.config = normalizeConfig(window.__PLAYERS_CONFIG__);
+      return;
+    }
+
     state.config = normalizeConfig({ groups: [] });
     showMessage(`Nie udało się wczytać konfiguracji ${CONFIG_URL}: ${error.message}`, true);
   }
@@ -107,18 +137,27 @@ async function refreshServerData() {
   setLoading(true);
 
   try {
-    const { server, source } = await fetchServerData();
+    const { server, source, updatedAt, cached } = await fetchServerData();
     state.server = server;
     state.dataSource = source;
+    state.dataUpdatedAt = updatedAt;
     const rows = buildRows(state.config, server);
     await processWebhookNotifications(rows);
     state.rows = rows;
-    updateServerMeta(server);
-    hideMessage();
+    updateServerMeta(server, updatedAt);
+    const cacheWarning = buildCacheWarning(cached, updatedAt);
+
+    if (cacheWarning) {
+      showMessage(cacheWarning);
+    } else {
+      hideMessage();
+    }
+
     render();
   } catch (error) {
     state.server = null;
     state.dataSource = "";
+    state.dataUpdatedAt = "";
     state.rows = buildRows(state.config, null);
     updateServerMeta(null);
     showMessage(buildFetchError(error), true);
@@ -135,7 +174,13 @@ async function fetchJson(url) {
     throw new Error(`HTTP ${response.status}`);
   }
 
-  return response.json();
+  const text = await response.text();
+
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error(`nieprawidłowy JSON (${formatResponsePreview(text)})`);
+  }
 }
 
 async function fetchText(url) {
@@ -161,9 +206,24 @@ async function fetchWithTimeout(url) {
         Accept: "application/json",
       },
     });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error(`przekroczono limit czasu ${REQUEST_TIMEOUT_MS / 1000}s`);
+    }
+
+    throw error;
   } finally {
     window.clearTimeout(timeoutId);
   }
+}
+
+function formatResponsePreview(text) {
+  const preview = String(text || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 80);
+
+  return preview ? `odpowiedź zaczyna się od "${preview}"` : "pusta odpowiedź";
 }
 
 function parseConfigText(text) {
@@ -179,7 +239,8 @@ async function fetchServerData() {
 
   for (const source of SERVER_API_SOURCES) {
     try {
-      const server = await fetchJson(source.url);
+      const payload = await readServerSource(source);
+      const { server, updatedAt } = source.normalize(payload);
 
       if (!Array.isArray(server?.Data?.players)) {
         throw new Error("brak pola Data.players");
@@ -188,6 +249,8 @@ async function fetchServerData() {
       return {
         server,
         source: source.label,
+        updatedAt: updatedAt || new Date().toISOString(),
+        cached: Boolean(source.cached),
       };
     } catch (error) {
       errors.push(`${source.label}: ${error.message}`);
@@ -195,6 +258,38 @@ async function fetchServerData() {
   }
 
   throw new Error(errors.join(" | "));
+}
+
+async function readServerSource(source) {
+  if (source.getPayload) {
+    const payload = source.getPayload();
+
+    if (!payload) {
+      throw new Error("brak załadowanego pliku data/server-data.js");
+    }
+
+    return payload;
+  }
+
+  return fetchJson(source.url);
+}
+
+function normalizeCachedServerResponse(payload) {
+  if (!payload?.server) {
+    throw new Error("brak pola server");
+  }
+
+  return {
+    server: payload.server,
+    updatedAt: payload.updatedAt || "",
+  };
+}
+
+function normalizeLiveServerResponse(payload) {
+  return {
+    server: payload,
+    updatedAt: new Date().toISOString(),
+  };
 }
 
 function normalizeConfig(config) {
@@ -608,18 +703,77 @@ function filterGroups(groups, query, includeOffline) {
     .filter((group) => group.name.toLowerCase().includes(query) || group.players.length > 0);
 }
 
-function updateServerMeta(server) {
+function updateServerMeta(server, updatedAt = "") {
   const data = server?.Data;
 
-  elements.serverName.textContent = data?.hostname || "Brak danych";
-  elements.serverPlayers.textContent = data
-    ? `${data.clients ?? "-"} / ${data.sv_maxclients ?? data.svMaxclients ?? "-"}`
-    : "-";
-  elements.lastUpdated.textContent = new Intl.DateTimeFormat("pl-PL", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  }).format(new Date());
+  if (!data) {
+    elements.serverName.textContent = "Brak danych";
+    elements.serverPlayers.textContent = "-";
+    elements.lastUpdated.textContent = "-";
+    return;
+  }
+
+  elements.serverName.textContent = data.hostname || "Brak danych";
+  elements.serverPlayers.textContent = `${data.clients ?? "-"} / ${data.sv_maxclients ?? data.svMaxclients ?? "-"}`;
+  elements.lastUpdated.textContent = formatUpdatedAt(updatedAt);
+}
+
+function formatUpdatedAt(updatedAt) {
+  const date = updatedAt ? new Date(updatedAt) : new Date();
+
+  if (Number.isNaN(date.getTime())) {
+    return "-";
+  }
+
+  const now = new Date();
+  const sameDay = date.toDateString() === now.toDateString();
+  const options = sameDay
+    ? {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }
+    : {
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+
+  return new Intl.DateTimeFormat("pl-PL", options).format(date);
+}
+
+function buildCacheWarning(cached, updatedAt) {
+  if (!cached || !updatedAt) {
+    return "";
+  }
+
+  const updatedTime = new Date(updatedAt).getTime();
+
+  if (!Number.isFinite(updatedTime)) {
+    return "";
+  }
+
+  const ageMs = Date.now() - updatedTime;
+
+  if (ageMs < CACHE_STALE_WARNING_MS) {
+    return "";
+  }
+
+  return `Dane z data/server.json mają ${formatAge(ageMs)}. Sprawdź, czy workflow "Update FiveM server data" działa na GitHubie.`;
+}
+
+function formatAge(ageMs) {
+  const minutes = Math.max(1, Math.round(ageMs / 60000));
+
+  if (minutes < 60) {
+    return `${minutes} min`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const restMinutes = minutes % 60;
+
+  return restMinutes ? `${hours} godz. ${restMinutes} min` : `${hours} godz.`;
 }
 
 function getIdentifierValue(player, type) {
@@ -675,7 +829,8 @@ function hideMessage() {
 function buildFetchError(error) {
   return [
     "Nie udało się pobrać danych z FiveM.",
-    "Próba bezpośrednia i darmowe proxy CORS nie odpowiedziały poprawnie.",
+    "Na GitHub Pages głównym źródłem jest data/server.json odświeżany przez GitHub Actions.",
+    "Jeśli plik jeszcze nie istnieje, uruchom workflow \"Update FiveM server data\" ręcznie albo poczekaj na harmonogram.",
     `Szczegóły: ${error.message}`,
   ].join(" ");
 }
