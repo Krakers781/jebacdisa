@@ -1,76 +1,22 @@
 {
-  "updatedAt": "2026-05-03T23:58:17.052Z",
+  "updatedAt": "2026-05-04T03:28:39.812Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 49,
-      "sv_maxclients": 223,
-      "svMaxclients": 223,
+      "clients": 3,
+      "sv_maxclients": 220,
+      "svMaxclients": 220,
       "players": [
         {
-          "id": 267,
-          "name": "Lisekpusty12v2",
-          "ping": 20,
+          "id": 23,
+          "name": "G0NZ0",
+          "ping": 16,
           "identifiers": [
-            "steam:11000012fdcc85f",
-            "discord:529037426568724491"
-          ]
-        },
-        {
-          "id": 75,
-          "name": "Duller",
-          "ping": 17,
-          "identifiers": [
-            "steam:11000011c4c3637",
-            "discord:912253844505911296"
-          ]
-        },
-        {
-          "id": 258,
-          "name": "Filipek",
-          "ping": 17,
-          "identifiers": [
-            "steam:110000144ffa545",
-            "discord:1003743109445845095"
-          ]
-        },
-        {
-          "id": 497,
-          "name": "Urlih95",
-          "ping": 10,
-          "identifiers": [
-            "steam:11000010a048172",
-            "discord:269112354963193859"
-          ]
-        },
-        {
-          "id": 445,
-          "name": "Termi",
-          "ping": 31,
-          "identifiers": [
-            "steam:11000013cb261e2",
-            "discord:659817358801633281"
-          ]
-        },
-        {
-          "id": 592,
-          "name": "krzywy",
-          "ping": 60,
-          "identifiers": [
-            "steam:1100001431dc46e",
-            "discord:1448357470547349544"
-          ]
-        },
-        {
-          "id": 664,
-          "name": "Parkurzysta",
-          "ping": 68,
-          "identifiers": [
-            "steam:11000013a919e31",
-            "discord:501014368696139786"
+            "steam:11000010aae9a16",
+            "discord:1008454964764491898"
           ]
         }
       ]
