@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-05T03:46:50.455Z",
+  "updatedAt": "2026-05-05T06:06:27.129Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
@@ -9,7 +9,17 @@
       "clients": 3,
       "sv_maxclients": 220,
       "svMaxclients": 220,
-      "players": []
+      "players": [
+        {
+          "id": 15,
+          "name": "Paplisek",
+          "ping": 10,
+          "identifiers": [
+            "steam:110000110d0cee8",
+            "discord:257507094276603904"
+          ]
+        }
+      ]
     }
   }
 }
