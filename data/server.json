@@ -1,24 +1,15 @@
 {
-  "updatedAt": "2026-05-06T23:27:06.692Z",
+  "updatedAt": "2026-05-07T00:12:13.187Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 108,
-      "sv_maxclients": 221,
-      "svMaxclients": 221,
+      "clients": 82,
+      "sv_maxclients": 220,
+      "svMaxclients": 220,
       "players": [
-        {
-          "id": 128,
-          "name": "Dairou",
-          "ping": 55,
-          "identifiers": [
-            "steam:1100001072a1e82",
-            "discord:1218694113164263495"
-          ]
-        },
         {
           "id": 2,
           "name": "escort moniczka g",
@@ -29,36 +20,9 @@
           ]
         },
         {
-          "id": 16,
-          "name": "IraQ",
-          "ping": 14,
-          "identifiers": [
-            "steam:1100001026a6d32",
-            "discord:346627295957483521"
-          ]
-        },
-        {
-          "id": 109,
-          "name": "diiscord",
-          "ping": 40,
-          "identifiers": [
-            "steam:11000015f0ed069",
-            "discord:1095135123768361071"
-          ]
-        },
-        {
-          "id": 9,
-          "name": "alcoro",
-          "ping": 87,
-          "identifiers": [
-            "steam:11000013e485011",
-            "discord:548127720853471234"
-          ]
-        },
-        {
           "id": 26,
           "name": "Alwin",
-          "ping": 22,
+          "ping": 27,
           "identifiers": [
             "steam:11000014746f7f4",
             "discord:1156559805280960532"
@@ -67,34 +31,16 @@
         {
           "id": 43,
           "name": "Walcie Wiadra Rodacy",
-          "ping": 20,
+          "ping": 22,
           "identifiers": [
             "steam:11000013f97ac74",
             "discord:983400615629693049"
           ]
         },
         {
-          "id": 125,
-          "name": "boro",
-          "ping": 90,
-          "identifiers": [
-            "steam:110000147ceaf45",
-            "discord:683594141678174217"
-          ]
-        },
-        {
-          "id": 70,
-          "name": "Pamela Anderson",
-          "ping": 19,
-          "identifiers": [
-            "steam:110000114faf13f",
-            "discord:442279585866842114"
-          ]
-        },
-        {
           "id": 61,
           "name": "G0NZ0",
-          "ping": 18,
+          "ping": 17,
           "identifiers": [
             "steam:11000010aae9a16",
             "discord:1008454964764491898"
@@ -103,46 +49,19 @@
         {
           "id": 75,
           "name": "martin oppalnik",
-          "ping": 17,
+          "ping": 18,
           "identifiers": [
             "steam:1100001151307ba",
             "discord:681236929148485694"
           ]
         },
         {
-          "id": 63,
-          "name": "Ustaw swoja nazwe profilu",
-          "ping": 25,
-          "identifiers": [
-            "steam:110000142f7f1c1",
-            "discord:745050170827341904"
-          ]
-        },
-        {
           "id": 78,
           "name": "DzikiDzik",
-          "ping": 20,
+          "ping": 22,
           "identifiers": [
             "steam:11000011c869077",
             "discord:994222280035020860"
-          ]
-        },
-        {
-          "id": 95,
-          "name": "krzywy",
-          "ping": 79,
-          "identifiers": [
-            "steam:1100001431dc46e",
-            "discord:1448357470547349544"
-          ]
-        },
-        {
-          "id": 110,
-          "name": "Hui Penk",
-          "ping": 52,
-          "identifiers": [
-            "steam:110000115177d2d",
-            "discord:390570436175593473"
           ]
         },
         {
@@ -152,6 +71,15 @@
           "identifiers": [
             "steam:11000011a5cbd26",
             "discord:529023640189272099"
+          ]
+        },
+        {
+          "id": 182,
+          "name": "Pamela Anderson",
+          "ping": 15,
+          "identifiers": [
+            "steam:110000114faf13f",
+            "discord:442279585866842114"
           ]
         }
       ]
