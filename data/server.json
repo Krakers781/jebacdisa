@@ -1,66 +1,48 @@
 {
-  "updatedAt": "2026-05-09T01:19:00.750Z",
+  "updatedAt": "2026-05-09T04:37:05.642Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 27,
+      "clients": 12,
       "sv_maxclients": 220,
       "svMaxclients": 220,
       "players": [
         {
-          "id": 30,
-          "name": "Paleciarz",
-          "ping": 62,
-          "identifiers": [
-            "steam:1100001365b6e2d",
-            "discord:683306239899205734"
-          ]
-        },
-        {
-          "id": 6,
-          "name": "POPA SHURDA",
-          "ping": 22,
-          "identifiers": [
-            "steam:1100001459fb5a1",
-            "discord:415994728543158278"
-          ]
-        },
-        {
-          "id": 35,
-          "name": "saksofon",
-          "ping": 59,
-          "identifiers": [
-            "discord:820426296773312552"
-          ]
-        },
-        {
           "id": 11,
           "name": "Antonio",
-          "ping": 26,
+          "ping": 27,
           "identifiers": [
             "steam:11000014d32eb0f",
             "discord:372300792629035008"
           ]
         },
         {
-          "id": 29,
-          "name": "G0NZ0",
-          "ping": 17,
+          "id": 50,
+          "name": "saksofon",
+          "ping": 22,
           "identifiers": [
-            "steam:11000010aae9a16",
-            "discord:1008454964764491898"
+            "discord:820426296773312552"
           ]
         },
         {
-          "id": 32,
+          "id": 55,
           "name": "zzzzzz",
-          "ping": 26,
+          "ping": 30,
           "identifiers": [
             "steam:11000013e097026",
             "discord:241973152073252864"
+          ]
+        },
+        {
+          "id": 65,
+          "name": "Dollie",
+          "ping": 24,
+          "identifiers": [
+            "steam:110000107060a65",
+            "discord:381740166227689482"
           ]
         }
       ]
