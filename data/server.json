@@ -1,15 +1,34 @@
 {
-  "updatedAt": "2026-05-10T04:08:47.618Z",
+  "updatedAt": "2026-05-10T06:41:56.960Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 8,
+      "clients": 5,
       "sv_maxclients": 220,
       "svMaxclients": 220,
-      "players": []
+      "players": [
+        {
+          "id": 83,
+          "name": "Taran",
+          "ping": 20,
+          "identifiers": [
+            "steam:1100001041e5c3d",
+            "discord:251012258468069377"
+          ]
+        },
+        {
+          "id": 88,
+          "name": "Mac",
+          "ping": 41,
+          "identifiers": [
+            "steam:110000102c1ba7e",
+            "discord:858402603436081202"
+          ]
+        }
+      ]
     }
   }
 }
