@@ -1,49 +1,22 @@
 {
-  "updatedAt": "2026-05-11T01:29:19.287Z",
+  "updatedAt": "2026-05-11T05:36:56.949Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 20,
+      "clients": 1,
       "sv_maxclients": 220,
       "svMaxclients": 220,
       "players": [
         {
-          "id": 12,
-          "name": "pwln",
-          "ping": 11,
+          "id": 39,
+          "name": "Paplisek",
+          "ping": 10,
           "identifiers": [
-            "steam:1100001151307ba",
-            "discord:681236929148485694"
-          ]
-        },
-        {
-          "id": 14,
-          "name": "saksofon",
-          "ping": 27,
-          "identifiers": [
-            "steam:110000105a8b709",
-            "discord:820426296773312552"
-          ]
-        },
-        {
-          "id": 22,
-          "name": "zzzzzz",
-          "ping": 27,
-          "identifiers": [
-            "steam:11000013e097026",
-            "discord:241973152073252864"
-          ]
-        },
-        {
-          "id": 26,
-          "name": "Pamela Anderson",
-          "ping": 18,
-          "identifiers": [
-            "steam:110000114faf13f",
-            "discord:442279585866842114"
+            "steam:110000110d0cee8",
+            "discord:257507094276603904"
           ]
         }
       ]
