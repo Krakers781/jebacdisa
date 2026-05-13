@@ -1,109 +1,37 @@
 {
-  "updatedAt": "2026-05-12T23:05:08.392Z",
+  "updatedAt": "2026-05-13T00:11:28.541Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 115,
-      "sv_maxclients": 227,
-      "svMaxclients": 227,
+      "clients": 64,
+      "sv_maxclients": 221,
+      "svMaxclients": 221,
       "players": [
         {
           "id": 82,
           "name": "Bartok",
-          "ping": 15,
+          "ping": 17,
           "identifiers": [
             "steam:1100001044ea0f1",
             "discord:223524680294727681"
           ]
         },
         {
-          "id": 21,
-          "name": "Mati2007",
-          "ping": 19,
-          "identifiers": [
-            "steam:1100001118bcb2a",
-            "discord:314869117444292611"
-          ]
-        },
-        {
           "id": 129,
           "name": "Pamela Anderson",
-          "ping": 19,
+          "ping": 18,
           "identifiers": [
             "steam:110000114faf13f",
             "discord:442279585866842114"
           ]
         },
         {
-          "id": 690,
-          "name": "Keson",
-          "ping": 22,
-          "identifiers": [
-            "steam:11000016b43eeb5",
-            "discord:371405490011504640"
-          ]
-        },
-        {
-          "id": 85,
-          "name": "XXXXXXXX",
-          "ping": 21,
-          "identifiers": [
-            "steam:1100001322c9f7f",
-            "discord:385911024697475082"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Yanusittaithe",
-          "ping": 38,
-          "identifiers": [
-            "steam:1100001054ab317",
-            "discord:221722721673936898"
-          ]
-        },
-        {
-          "id": 123,
-          "name": "Pawexito",
-          "ping": 38,
-          "identifiers": [
-            "steam:110000143161682",
-            "discord:1392986221818679377"
-          ]
-        },
-        {
-          "id": 146,
-          "name": "Placek",
-          "ping": 19,
-          "identifiers": [
-            "steam:110000149e82305",
-            "discord:1092794551946723420"
-          ]
-        },
-        {
-          "id": 613,
-          "name": "Dewu",
-          "ping": 47,
-          "identifiers": [
-            "steam:1100001026c2e5c",
-            "discord:417340617933193216"
-          ]
-        },
-        {
-          "id": 591,
-          "name": "shooked",
-          "ping": 38,
-          "identifiers": [
-            "steam:110000108fa379c",
-            "discord:286962007704338432"
-          ]
-        },
-        {
           "id": 610,
           "name": "IraQ",
-          "ping": 21,
+          "ping": 20,
           "identifiers": [
             "steam:1100001026a6d32",
             "discord:346627295957483521"
@@ -112,7 +40,7 @@
         {
           "id": 634,
           "name": "graczkarciany",
-          "ping": 43,
+          "ping": 45,
           "identifiers": [
             "steam:110000102582007",
             "discord:1464195345356427401"
@@ -128,18 +56,18 @@
           ]
         },
         {
-          "id": 662,
-          "name": "AvEK",
-          "ping": 25,
+          "id": 720,
+          "name": "Ahus",
+          "ping": 20,
           "identifiers": [
-            "steam:11000011854d2c3",
-            "discord:333756830541152257"
+            "steam:11000010e765913",
+            "discord:348129644916244490"
           ]
         },
         {
           "id": 679,
           "name": "saksofon",
-          "ping": 21,
+          "ping": 24,
           "identifiers": [
             "discord:820426296773312552"
           ]
@@ -147,7 +75,7 @@
         {
           "id": 681,
           "name": "NotKUBIII",
-          "ping": 36,
+          "ping": 40,
           "identifiers": [
             "steam:11000011939241e",
             "discord:773662252691750922"
@@ -156,25 +84,34 @@
         {
           "id": 688,
           "name": "zzzzzz",
-          "ping": 32,
+          "ping": 25,
           "identifiers": [
             "steam:11000013e097026",
             "discord:241973152073252864"
           ]
         },
         {
-          "id": 687,
-          "name": "alcoro",
-          "ping": 80,
+          "id": 713,
+          "name": "KUBA SLEDZIK",
+          "ping": 12,
           "identifiers": [
-            "steam:11000013e485011",
-            "discord:548127720853471234"
+            "steam:11000010a3fa5be",
+            "discord:647776993408057354"
           ]
         },
         {
-          "id": 695,
+          "id": 725,
+          "name": "DzikiDzik",
+          "ping": 21,
+          "identifiers": [
+            "steam:11000011c869077",
+            "discord:994222280035020860"
+          ]
+        },
+        {
+          "id": 729,
           "name": "G0NZ0",
-          "ping": 15,
+          "ping": 18,
           "identifiers": [
             "steam:11000010aae9a16",
             "discord:1008454964764491898"
