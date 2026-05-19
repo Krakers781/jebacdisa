@@ -1,25 +1,15 @@
 {
-  "updatedAt": "2026-05-19T01:31:44.899Z",
+  "updatedAt": "2026-05-19T05:45:10.784Z",
   "source": "https://servers-frontend.fivem.net/api/servers/single/okz5dj",
   "trackedPlayers": 165,
   "server": {
     "EndPoint": "okz5dj",
     "Data": {
       "hostname": "INTOUCH",
-      "clients": 12,
+      "clients": 1,
       "sv_maxclients": 220,
       "svMaxclients": 220,
-      "players": [
-        {
-          "id": 3,
-          "name": "marlon",
-          "ping": 10,
-          "identifiers": [
-            "steam:1100001151307ba",
-            "discord:681236929148485694"
-          ]
-        }
-      ]
+      "players": []
     }
   }
 }
